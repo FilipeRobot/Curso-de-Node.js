@@ -1,8 +1,12 @@
 const express = require('express')
 const router = express.Router()
+const mongoose = require('mongoose')
+require('../models/Categoria')
+const Categoria = mongoose.model('categorias')
 
+//GET
 router.get('/', (req, res) => {
-	res.render("admin/index")
+	res.render('admin/index')
 })
 
 router.get('/posts', (req, res) => {
@@ -10,15 +14,32 @@ router.get('/posts', (req, res) => {
 })
 
 router.get('/categorias', (req, res) => {
-	res.render("admin/categorias")
+	res.render('admin/categorias')
 })
 
 router.get('/categorias/add', (req, res) => {
-	res.render("admin/addcategorias")
+	res.render('admin/addcategorias')
 })
 
 router.get('/teste', (req, res) => {
 	res.send('Isso é um teste')
+})
+
+// POST
+router.post('/categorias/nova', (req, res) => {
+	const novaCategoria = {
+		nome: req.body.nome,
+		slug: req.body.slug,
+	}
+
+	new Categoria(novaCategoria)
+		.save()
+		.then(() => {
+			console.log('Categoria salva com sucesso!')
+		})
+		.catch((err) => {
+			console.log('Erro ao salvar categoria: ' + err)
+		})
 })
 
 module.exports = router
