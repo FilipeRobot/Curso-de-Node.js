@@ -10,6 +10,10 @@
             <small>Data: {{data}}</small><br>
             <small>Categoria: {{categoria.nome}}</small><br>
             <a href="/admin/postagens/edit/{{_id}}"><button class="btn btn-sm btn-success mt-4">Editar postagem</button></a>
+            <form action="/admin/postagens/deletar" method="post">
+                <input type="hidden" name="id" value="{{_id}}">
+                <button type="submit" class="btn btn-sm btn-danger mt-2">Deletar postagem</button>
+            </form>
         </div>
     </div>
 {{else}}
