@@ -12,10 +12,6 @@ router.get('/', eAdmin, (req, res) => {
 	res.render('admin/index')
 })
 
-router.get('/posts', eAdmin, (req, res) => {
-	res.send('Página de posts')
-})
-
 router.get('/categorias', eAdmin, (req, res) => {
 	Categoria.find()
 		.sort({ date: 'desc' })

@@ -15,6 +15,7 @@ const Categoria = mongoose.model('categorias')
 const usuarios = require('./routes/usuario')
 const passport = require('passport')
 require('./config/auth')(passport)
+const db = require('./config/db')
 // Configurações
 // Sessão
 app.use(
@@ -53,7 +54,7 @@ app.set('view engine', 'handlebars')
 // mongoose
 mongoose.Promise = global.Promise
 mongoose
-	.connect('mongodb://localhost/blogapp', {
+	.connect(db.mongoURI, {
 		useNewUrlParser: true,
 	})
 	.then(() => {
@@ -65,10 +66,6 @@ mongoose
 // Public
 app.use(express.static(path.join(__dirname, 'public')))
 
-app.use((req, res, next) => {
-	// console.log('Oi eu sou um middlewere!')
-	next()
-})
 // Rotas
 app.get('/', (req, res) => {
 	Postagem.find()
@@ -157,7 +154,7 @@ app.get('/404', (req, res) => {
 app.use('/admin', admin)
 app.use('/usuarios', usuarios)
 // Outros
-const PORT = 8081
+const PORT = process.env.PORT || 8089
 app.listen(PORT, () => {
 	console.log('Servidor rodando!')
 })

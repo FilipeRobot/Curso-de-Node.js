@@ -9,5 +9,16 @@
     "mongoose": "^6.6.1",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0"
-  }
+  },
+  "name": "blogapp",
+  "version": "1.0.0",
+  "description": "Um blog simples em nodejs",
+  "main": "app.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "author": "FilipeRobot",
+  "license": "ISC"
 }
