@@ -14,6 +14,7 @@
         </li>
         {{#if user}}
           {{#if user.eAdmin}}
+            <!-- Itens aqui aparecem somente para usuários logados q são administradores -->
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 admin: {{user.nome}}
@@ -24,7 +25,12 @@
               </ul>
             </li>
           {{else}}
+            <!-- Itens aqui aparecem somente para usuários logados mas q não são administradores -->
           {{/if}}
+          <!-- Itens aqui aparecem para qualquer usuários logado administrador ou não -->
+          <li class="nav-item">
+            <a class="nav-link" href="/usuarios/logout">Sair</a>
+          </li>
         {{else}}
           <li class="nav-item">
             <a class="nav-link" href="/usuarios/login">Login</a>
